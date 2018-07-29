@@ -43,6 +43,8 @@ export default class TimeoutLink extends ApolloLink {
         clearTimeout(timer);
         observer.next(result);
         observer.complete();
+      }, (error) => {
+        observer.error(error);
       });
 
       // if timeout expires before observable completes, abort call, unsubscribe, and return error
